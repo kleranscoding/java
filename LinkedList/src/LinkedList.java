@@ -1,19 +1,19 @@
 /**
- * NodeChains.java
+ * LinkedList.java
  * a simple singly LinkedList implementation
  * @author clarence
  */
 
 import java.util.*;
 
-public class NodeChains<T> implements LinkedListADT<T> {
+public class LinkedList<T> implements LinkedListADT<T> {
 
     /** fields **/
     private Node<T> head, tail;
     private int numItems;
 	
     /** constructor **/
-    public NodeChains() {
+    public LinkedList() {
         head= new Node<T>(null);
         tail= head;
         numItems= 0;
@@ -119,22 +119,5 @@ public class NodeChains<T> implements LinkedListADT<T> {
         }
         tail= back;
     }
-	
-    /** split the linked-list into half **/
-    public Node<T> splitHalf() {	
-        if (head==null || head.getNext()==null) return null;
-        Node<T> fast= head.getNext();
-        Node<T> slow= head.getNext();
-        Node<T> frontLast= new Node<T>(null,null);
-		
-        while (fast!=null) {
-            fast= (fast.getNext()!=null) ? fast.getNext().getNext() : null;
-            frontLast= slow;
-            slow= slow.getNext();
-        }
-        frontLast.setNext(null);
-        
-        return slow;
-    }	
 
 }
