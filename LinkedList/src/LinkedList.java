@@ -120,4 +120,36 @@ public class LinkedList<T> implements LinkedListADT<T> {
         tail= back;
     }
 
+    /** remove duplicates **/
+    public void removeDup() {
+        if (head.getNext()==null) return;
+        Hashtable<T,Boolean> table= new Hashtable<T,Boolean>();
+        Node<T> n= head.getNext(), prev= null;
+        while (n!=null) {
+            if (!table.containsKey(n.getData()))  {
+                table.put(n.getData(), true);
+                prev= n;
+            } else {
+                prev.setNext(n.getNext());
+            }
+            n= n.getNext();
+        }
+    }
+
+    /** find the last n-th node **/
+    public T findNthLast(int n) {
+        if (head.getNext()==null || n<1) return null;
+        Node<T> n1= head.getNext();
+        Node<T> n2= head.getNext();
+        for (int i=0; i< n; i++) {
+            if (n2 == null) return null;
+            n2= n2.getNext();
+        }
+        while (n2!=null) {
+            n1= n1.getNext();
+            n2= n2.getNext();
+        }
+        return n1.getData();	
+    }
+
 }
